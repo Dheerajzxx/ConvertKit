@@ -1736,3 +1736,52 @@ iframe.preview-frame {
   display: block;
   min-height: 340px;
 }
+
+/* ---------- Small layout utilities (CSP-safe, no inline styles) ---------- */
+.preview-frame--short {
+  min-height: auto;
+  max-height: 280px;
+}
+
+.preview-frame--tall {
+  min-height: auto;
+  max-height: 360px;
+  white-space: pre-wrap;
+}
+
+.check--row {
+  align-items: center;
+  min-height: 44px;
+}
+
+.field--plain {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.input--narrow {
+  max-width: 160px;
+}
+
+.action-row--tight {
+  margin: 0 0 var(--space-4);
+}
+
+.action-row--center {
+  justify-content: center;
+}
+
+.grid-2col {
+  grid-template-columns: 1fr 1fr;
+}
+
+.m-auto-x {
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+}

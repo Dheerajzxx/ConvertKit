@@ -25,8 +25,8 @@
         <div>
           <p class="error-page__code">404</p>
           <h1 class="mt-3">This page slipped through the cracks</h1>
-          <p class="lead mt-3" style="margin-inline:auto">The link may be broken, or the page may have moved. Try one of the tools below, or head back home.</p>
-          <div class="action-row" style="justify-content:center">
+          <p class="lead mt-3 m-auto-x">The link may be broken, or the page may have moved. Try one of the tools below, or head back home.</p>
+          <div class="action-row action-row--center">
             <a class="btn btn-primary" href="index.html">Browse all tools</a>
             <button class="btn btn-secondary" type="button" id="open-palette">Search tools (⌘K)</button>
           </div>
@@ -38,25 +38,6 @@
   </main>
 
   <div id="site-footer"></div>
-  <script type="module" src="assets/js/common.js"></script>
-  <script type="module">
-    import { TOOLS, ICONS, getRoot, escapeHtml } from "./assets/js/common.js";
-    const root = getRoot();
-    const picks = ["merge-pdf", "image-compressor", "excel-to-csv"];
-    const host = document.getElementById("quick-links");
-    if (host) {
-      host.innerHTML = picks
-        .map((id) => TOOLS.find((t) => t.id === id))
-        .filter(Boolean)
-        .map(
-          (t) => `<a class="related-card cat-${t.category}" href="${root}${t.path}">
-            <span class="related-card__icon" aria-hidden="true">${ICONS[t.icon]}</span>
-            <span><span class="related-card__name">${escapeHtml(t.name)}</span>
-            <span class="related-card__desc">${escapeHtml(t.desc)}</span></span>
-          </a>`
-        )
-        .join("");
-    }
-  </script>
+  <script type="module" src="assets/js/404.js"></script>
 </body>
 </html>

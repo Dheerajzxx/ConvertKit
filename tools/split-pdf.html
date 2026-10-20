@@ -83,7 +83,7 @@
 
           <div class="options-panel" id="options-panel" hidden>
             <h2 class="options-panel__title">How should we split it?</h2>
-            <fieldset class="field field--full" style="border:none;padding:0;margin:0 0 var(--space-4)">
+            <fieldset class="field field--full field--plain">
               <legend class="field__label mb-2">Split mode</legend>
               <div class="segmented" role="radiogroup" aria-label="Split mode">
                 <label><input type="radio" name="mode" value="range" checked><span>Extract page range</span></label>
@@ -100,7 +100,7 @@
 
             <div class="field field--full" id="every-field" hidden>
               <label for="every-input">Pages per file</label>
-              <input class="input" id="every-input" type="number" min="1" step="1" value="1" style="max-width:160px">
+              <input class="input input--narrow" id="every-input" type="number" min="1" step="1" value="1">
               <span class="field__help">Results are delivered as a ZIP when there is more than one file.</span>
             </div>
           </div>
