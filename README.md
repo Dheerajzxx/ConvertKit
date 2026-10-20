@@ -4,7 +4,7 @@ A free, fully client-side document and file converter. Every tool runs in your
 browser — there is no backend, no database and no upload. Your files never leave
 your device.
 
-Live site: _deployed via GitHub Pages_ (update this with your URL once deployed).
+Live site: <https://dheerajzxx.github.io/ConvertKit/>
 
 ## Features
 
@@ -58,25 +58,21 @@ Then open <http://localhost:8000/>.
 
 ## Deployment
 
-The site is designed for GitHub Pages serving from the repository root:
+The site deploys automatically with GitHub Actions:
 
-1. Push to the `main` branch.
-2. In the repository settings, set Pages to deploy from the `main` branch, `/` root.
-3. GitHub re-deploys automatically on every merge to `main`.
+1. Push to the `master` branch — the `Deploy to GitHub Pages` workflow runs.
+2. One-time setup in the repository settings: **Settings → Pages → Build and
+   deployment → Source: GitHub Actions**.
+3. Every push to `master` (or a manual run of the workflow) re-deploys the site.
 
 `.nojekyll` is present so Jekyll does not interfere with files and folders that
 begin with an underscore.
 
-### Before you deploy
+Live URL: <https://dheerajzxx.github.io/ConvertKit/>
 
-The deployment domain is a placeholder in two files. Replace
-`https://example.github.io/ConvertKit/` with your real Pages URL in:
-
-- `sitemap.xml` (every `<loc>`)
-- `robots.txt` (the `Sitemap:` line)
-
-All other links use relative paths, so they work whether the site is served from
-`username.github.io/repo-name/` or a custom domain.
+All links use relative paths, so they work whether the site is served from
+`username.github.io/repo-name/` or a custom domain. `sitemap.xml` and
+`robots.txt` reference the live URL above — update both if the site moves.
 
 ## Testing
 

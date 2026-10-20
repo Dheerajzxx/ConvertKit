@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://example.github.io/ConvertKit/sitemap.xml
+Sitemap: https://dheerajzxx.github.io/ConvertKit/sitemap.xml
