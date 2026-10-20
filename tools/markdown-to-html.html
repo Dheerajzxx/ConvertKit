@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'self'">
+  <title>Markdown to HTML Converter with Live Preview — ConvertKit</title>
+  <meta name="description" content="Write Markdown and see live HTML. Copy or download the generated HTML, clean and sanitised. Free, private and works offline in your browser.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="markdown-to-html.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="Markdown to HTML Converter with Live Preview — ConvertKit">
+  <meta property="og:description" content="A fast Markdown editor with instant sanitised HTML output.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Markdown to HTML Converter — ConvertKit">
+  <meta name="twitter:description" content="Live Markdown preview with clean HTML output.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Which Markdown features are supported?", "acceptedAnswer": { "@type": "Answer", "text": "GitHub-flavoured Markdown: headings, bold and italics, links, images, lists, tables, blockquotes, inline code and fenced code blocks." } },
+      { "@type": "Question", "name": "Is the HTML safe to paste into my site?", "acceptedAnswer": { "@type": "Answer", "text": "The output is sanitised, stripping scripts and event handlers. It is safe for most content fields, though you should still follow your platform's rules." } },
+      { "@type": "Question", "name": "Does this work offline?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, once the page has loaded. No data is sent anywhere and the libraries are served with the site." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="markdown-to-html">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#document-tools">Document tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">Markdown to HTML</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Markdown to HTML converter</h1>
+        <p class="lead">Write Markdown on the left and watch the HTML preview update as you type. Copy or download clean, sanitised HTML.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <div class="action-row" style="margin:0 0 var(--space-4)">
+            <button class="btn btn-secondary btn-sm" id="sample-btn" type="button">Load sample</button>
+            <button class="btn btn-ghost btn-sm" id="clear-btn" type="button">Clear</button>
+            <span class="count text-sm muted" id="word-count"></span>
+          </div>
+
+          <div class="editor-split">
+            <div class="editor-pane">
+              <label class="editor-pane__label" for="markdown-input">Markdown</label>
+              <textarea class="input" id="markdown-input" spellcheck="false" placeholder="# Start typing Markdown…"></textarea>
+            </div>
+            <div class="editor-pane">
+              <span class="editor-pane__label">Output</span>
+              <div class="segmented mb-2" id="output-tabs" role="tablist" aria-label="Output view">
+                <button class="seg-tab is-active" type="button" data-view="preview" role="tab" aria-selected="true">Preview</button>
+                <button class="seg-tab" type="button" data-view="code" role="tab" aria-selected="false">HTML code</button>
+              </div>
+              <iframe class="preview-frame" id="preview-frame" title="Rendered Markdown preview" sandbox=""></iframe>
+              <pre class="preview-frame" id="output" hidden aria-label="Generated HTML"></pre>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="download-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+              Download HTML
+            </button>
+            <button class="btn btn-secondary" id="copy-btn" type="button">Copy HTML</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Type or paste Markdown to begin — the preview updates instantly.</p>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Your text is rendered locally and never uploaded. The preview runs in a sandboxed frame and the HTML is sanitised.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to use the Markdown converter</h2>
+        <div class="prose">
+          <ol>
+            <li>Type or paste Markdown into the left pane. It supports headings, lists, links, images, tables and code blocks.</li>
+            <li>Use the Preview tab to check formatting and the HTML code tab to inspect the output.</li>
+            <li>Copy the HTML, or download it as a complete .html file.</li>
+          </ol>
+          <p>The generated HTML is sanitised, so scripts and inline event handlers are removed before you paste it anywhere.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which Markdown features are supported?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>GitHub-flavoured Markdown: headings, emphasis, links, images, lists, tables, blockquotes, inline code and fenced code blocks.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is the HTML safe to paste into my site?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes, it is sanitised and strips scripts and event handlers. Still follow your platform's own content rules when publishing.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Does this work offline?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Once the page has loaded, yes. Everything runs locally with no network calls, so it keeps working without a connection.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/marked-12.0.2.min.js"></script>
+  <script src="../assets/vendor/dompurify-3.1.7.min.js"></script>
+  <script type="module" src="../assets/js/tools/markdown-to-html.js"></script>
+</body>
+</html>

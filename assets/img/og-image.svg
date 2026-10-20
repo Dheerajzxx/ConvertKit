@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="ConvertKit — free private file converters that run in your browser">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.25" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.85" cy="0.15" r="0.55">
+      <stop offset="0" stop-color="#a855f7" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="0.6" stop-color="#c084fc"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <g transform="translate(96 84)">
+    <rect width="76" height="76" rx="20" fill="#6366f1"/>
+    <path fill="#ffffff" d="M38 14l5.8 15.4L59 35.2l-15.2 5.8L38 56.4l-5.8-15.4L17 35.2l15.2-5.8z"/>
+  </g>
+  <text x="192" y="137" font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif" font-size="46" font-weight="700" fill="#ffffff">ConvertKit</text>
+
+  <text x="96" y="296" font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif" font-size="76" font-weight="800" fill="#ffffff" letter-spacing="-2.5">Convert files.</text>
+  <text x="96" y="382" font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif" font-size="76" font-weight="800" fill="url(#brand)" letter-spacing="-2.5">Without uploading.</text>
+
+  <text x="96" y="452" font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif" font-size="30" fill="#c7d2fe">PDF, image and data tools that run entirely in your browser.</text>
+
+  <g font-family="Inter, -apple-system, Segoe UI, Roboto, sans-serif" font-size="22" fill="#e0e7ff">
+    <rect x="96" y="502" width="300" height="56" rx="28" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+    <circle cx="128" cy="530" r="7" fill="#34d399"/>
+    <text x="150" y="538">Files never leave your device</text>
+
+    <rect x="414" y="502" width="196" height="56" rx="28" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+    <text x="444" y="538">100% free</text>
+
+    <rect x="628" y="502" width="220" height="56" rx="28" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.18"/>
+    <text x="658" y="538">No sign-up</text>
+  </g>
+</svg>

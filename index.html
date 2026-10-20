@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>ConvertKit — Free private file converters</title>
+  <meta name="description" content="Free PDF, image and data converters that run entirely in your browser. Merge, split, compress and convert files without uploading them anywhere.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="index.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="ConvertKit — Free private file converters">
+  <meta property="og:description" content="Merge PDFs, convert images, clean up data — all inside your browser. Your files never leave your device.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ConvertKit — Free private file converters">
+  <meta name="twitter:description" content="Free PDF, image and data tools that run entirely in your browser.">
+  <meta name="twitter:image" content="assets/img/og-image.jpg">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ConvertKit",
+    "description": "Free, private file converters that run entirely in your browser.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "index.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body data-root="" data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="hero__badge"><span class="dot" aria-hidden="true"></span> 100% browser-based · no uploads</p>
+        <h1>Convert files. <span class="gradient-text">Without uploading.</span></h1>
+        <p class="hero__sub">A fast, free toolkit for PDFs, images and data. Every file is processed on your device — nothing is sent to a server.</p>
+
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <label class="visually-hidden" for="tool-search">Search tools</label>
+          <input id="tool-search" type="search" placeholder="Search tools — try “merge”, “compress” or “CSV”" autocomplete="off" spellcheck="false">
+          <span class="search-bar__hint" aria-hidden="true"><kbd>/</kbd></span>
+        </div>
+
+        <div class="hero__trust">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg> Files never leave your device</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 6"/></svg> No sign-up, no limits</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 6"/></svg> Free forever</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="section-tight" id="recent-section" hidden aria-labelledby="recent-title">
+        <div class="tool-section__head">
+          <h2 id="recent-title" class="section-title-sm">Recently used</h2>
+        </div>
+        <div class="recent-row" id="recent-tools"></div>
+      </section>
+
+      <div id="tools-root"></div>
+
+      <div class="empty-state" id="search-empty" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg>
+        <p>No tools match that search. Try “PDF”, “image”, “CSV” or “Word”.</p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="privacy-title">
+      <div class="container">
+        <div class="page-head page-head--center pt-0">
+          <h2 id="privacy-title">Why it's private by design</h2>
+          <p class="lead">Most online converters upload your file to a server you can't see. ConvertKit doesn't have a server to upload to.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+            <h3>Nothing is uploaded</h3>
+            <p>Files are read and converted by JavaScript running in your browser tab. You can confirm it in the Network tab: no file data is ever sent.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8z"/></svg></div>
+            <h3>Fast, with no queues</h3>
+            <p>There is no upload wait and no “your file is being processed” email. Conversions start instantly and finish on your device.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m5 5 3 3"/><path d="m16 16 3 3"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m5 19 3-3"/><path d="m16 8 3-3"/></svg></div>
+            <h3>No account, no tracking</h3>
+            <p>No sign-up, no file history, no analytics profile. Your recently used tools are stored only in your own browser.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="assets/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Image Converter — PNG, JPG &amp; WebP — ConvertKit</title>
+  <meta name="description" content="Convert images between PNG, JPG and WebP with a quality slider. Batch convert several files and download them together as a ZIP. Free and private.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="image-converter.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="Image Converter — PNG, JPG &amp; WebP — ConvertKit">
+  <meta property="og:description" content="Switch image formats in your browser with no uploads and no waiting.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Converter — ConvertKit">
+  <meta name="twitter:description" content="Convert PNG, JPG and WebP privately in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Which formats can I convert between?", "acceptedAnswer": { "@type": "Answer", "text": "You can convert PNG, JPG and WebP into any of the other two formats. WebP output is supported by all current browsers." } },
+      { "@type": "Question", "name": "What happens when I convert a transparent PNG to JPG?", "acceptedAnswer": { "@type": "Answer", "text": "JPG has no transparency, so you choose a background colour that fills the transparent areas." } },
+      { "@type": "Question", "name": "Can I convert several images at once?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add as many images as you like; the results download together as a single ZIP file." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="image-converter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#image-tools">Image tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">Image Converter</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Convert PNG, JPG and WebP images</h1>
+        <p class="lead">Change image formats with a quality slider and a white background for transparency. Batch convert and download as a ZIP.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Convert</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add images">
+            <input type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" multiple>
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5a1.4 1.4 0 0 0-2 0L5 20"/></svg>
+            </span>
+            <span class="dropzone__title">Drop your images here, or <span class="link">choose files</span></span>
+            <span class="dropzone__hint">PNG, JPG or WebP · up to 50 MB each · paste with Ctrl+V</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Convert to</h2>
+            <div class="options-grid">
+              <div class="field field--full">
+                <span class="field__label">Output format</span>
+                <div class="segmented" role="radiogroup" aria-label="Output format">
+                  <label><input type="radio" name="format" value="image/png"><span>PNG</span></label>
+                  <label><input type="radio" name="format" value="image/jpeg" checked><span>JPG</span></label>
+                  <label><input type="radio" name="format" value="image/webp"><span>WebP</span></label>
+                </div>
+              </div>
+              <div class="field field--full" id="quality-field">
+                <label for="quality">Quality</label>
+                <div class="range-row">
+                  <input type="range" id="quality" min="40" max="100" step="1" value="90">
+                  <output class="range-value" id="quality-value">90%</output>
+                </div>
+                <span class="field__help">Lower quality means smaller files. Only applies to JPG and WebP.</span>
+              </div>
+              <div class="field field--full" id="background-row">
+                <label for="background">Background for transparency</label>
+                <input class="input" id="background" type="color" value="#ffffff">
+                <span class="field__help">JPG cannot store transparency, so transparent pixels are filled with this colour.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Convert images</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add images to begin.</p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+            <div class="progress__label"><span id="progress-label">Converting…</span></div>
+          </div>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Conversion complete</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <div class="result__actions">
+              <button class="btn btn-primary" id="download-btn" type="button">Download</button>
+              <button class="btn btn-secondary" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Images are decoded and re-encoded on your device with the Canvas API. There is no upload step.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to convert image formats</h2>
+        <div class="prose">
+          <ol>
+            <li>Add one or more PNG, JPG or WebP images.</li>
+            <li>Choose the output format. For JPG and WebP, set the quality slider.</li>
+            <li>If converting to JPG, pick a background colour for any transparent areas.</li>
+            <li>Select <strong>Convert images</strong> and download the result or ZIP.</li>
+          </ol>
+          <p>Want smaller files without changing the format? Try the <a href="image-compressor.html">Image Compressor</a>.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which formats can I convert between?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>PNG, JPG and WebP, in any direction. All current browsers support WebP output.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>What happens when I convert a transparent PNG to JPG?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>JPG cannot store transparency, so you choose a background colour that fills the transparent pixels. White is the usual choice.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I convert several images at once?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes. Add as many images as you need; the converted files are packaged into a single ZIP for download.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Convert images</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/jszip-3.10.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/image-converter.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>CSV to JSON Converter Free — ConvertKit</title>
+  <meta name="description" content="Convert CSV files to clean JSON instantly. Preview your data, choose the delimiter and header row, then copy or download the JSON. Free and private.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="csv-to-json.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="CSV to JSON Converter Free — ConvertKit">
+  <meta property="og:description" content="Turn CSV into JSON with a preview — and without uploading your data.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSV to JSON Converter Free — ConvertKit">
+  <meta name="twitter:description" content="Turn CSV into JSON privately in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How are the CSV rows shaped into JSON?", "acceptedAnswer": { "@type": "Answer", "text": "With a header row, each row becomes an object whose keys are the column names. Without a header row, columns are named column_1, column_2 and so on." } },
+      { "@type": "Question", "name": "Can it handle quoted fields and commas inside values?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The parser understands quoted fields, escaped quotes, embedded commas and line breaks inside quotes." } },
+      { "@type": "Question", "name": "Is my data uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. CSV and JSON parsing happens entirely in your browser. Your data is never transmitted." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="csv-to-json">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#data-tools">Data tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">CSV to JSON</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Convert CSV to JSON online, free</h1>
+        <p class="lead">Drop a CSV file, preview the table, and get clean JSON. Choose the delimiter, toggle the header row and pretty-print as you like.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Convert</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a CSV file">
+            <input type="file" accept=".csv,.tsv,text/csv,text/plain">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M3 14h18"/><path d="M9 9v11"/><path d="M15 9v11"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a CSV file here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">.csv or .tsv · up to 50 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Parsing options</h2>
+            <div class="options-grid">
+              <div class="field">
+                <label for="delimiter">Delimiter</label>
+                <select class="select" id="delimiter">
+                  <option value="auto" selected>Auto-detect</option>
+                  <option value="comma">Comma ( , )</option>
+                  <option value="tab">Tab</option>
+                  <option value="semicolon">Semicolon ( ; )</option>
+                </select>
+              </div>
+              <div class="field">
+                <span class="field__label">Options</span>
+                <label class="check" style="min-height:44px">
+                  <input type="checkbox" id="has-header" checked>
+                  <span><strong>First row is a header</strong>Use it for the JSON keys.</span>
+                </label>
+              </div>
+              <label class="check field--full">
+                <input type="checkbox" id="pretty" checked>
+                <span><strong>Pretty-print</strong>Indent the JSON for readability.</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="table-preview"></div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Convert to JSON</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a CSV file to begin.</p>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Your JSON is ready</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <pre class="preview-frame" id="output" style="min-height:auto;max-height:280px" aria-label="JSON output preview"></pre>
+            <div class="result__actions mt-4">
+              <button class="btn btn-primary" id="download-btn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+                Download JSON
+              </button>
+              <button class="btn btn-secondary" id="copy-btn" type="button">Copy JSON</button>
+              <button class="btn btn-ghost" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Spreadsheet data can be sensitive. Nothing is uploaded here — parsing happens on your device and the output stays with you.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to convert CSV to JSON</h2>
+        <div class="prose">
+          <ol>
+            <li>Add a .csv or .tsv file.</li>
+            <li>Check the preview table. If the columns look wrong, change the delimiter or toggle the header row.</li>
+            <li>Select <strong>Convert to JSON</strong>.</li>
+            <li>Copy the JSON or download it as a .json file.</li>
+          </ol>
+          <p>Going the other way? Use <a href="json-to-csv.html">JSON to CSV</a>.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How are rows shaped into JSON?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>With a header row, each row becomes an object using the column names as keys. Without one, keys are <code>column_1</code>, <code>column_2</code>, and so on.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can it handle quotes and commas inside values?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes. The parser understands quoted fields, escaped quotes, embedded commas and even line breaks inside quotes — the usual CSV edge cases.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is my data uploaded?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. Everything runs in your browser tab and no data is sent to a server. You can confirm it in the Network tab.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Convert to JSON</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/papaparse-5.4.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/csv-to-json.js"></script>
+</body>
+</html>

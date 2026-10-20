@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'self'">
+  <title>Word to HTML Converter — DOCX to HTML — ConvertKit</title>
+  <meta name="description" content="Convert Word .docx documents to clean HTML or plain text. Preview the result in a safe frame, then copy or download. Free and private in your browser.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="docx-to-html.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="Word to HTML Converter — ConvertKit">
+  <meta property="og:description" content="Turn .docx files into clean HTML or text without uploading them.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Word to HTML Converter — ConvertKit">
+  <meta name="twitter:description" content="Turn .docx into HTML privately in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Which Word formats work?", "acceptedAnswer": { "@type": "Answer", "text": "Modern .docx files. The older .doc format is not supported — open it in Word or Google Docs and save as .docx first." } },
+      { "@type": "Question", "name": "Will the layout look exactly the same?", "acceptedAnswer": { "@type": "Answer", "text": "No. Headings, lists, links, tables and images are preserved, but text boxes, columns and exact fonts are simplified." } },
+      { "@type": "Question", "name": "Is the document uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. The .docx file is unpacked and read entirely in your browser. The HTML preview is sanitised and shown in a sandboxed frame." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="docx-to-html">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#document-tools">Document tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">Word to HTML</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Convert Word documents to HTML</h1>
+        <p class="lead">Turn a .docx file into clean HTML or plain text. Headings, lists, links, tables and images are kept; complex layout is simplified.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Convert</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a Word document">
+            <input type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a .docx file here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">Word .docx · up to 50 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Output format</h2>
+            <div class="segmented" role="radiogroup" aria-label="Output format">
+              <label><input type="radio" name="mode" value="html" checked><span>HTML</span></label>
+              <label><input type="radio" name="mode" value="text"><span>Plain text</span></label>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Convert document</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a .docx file to begin.</p>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Your document is converted</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+
+            <div class="segmented mb-3" id="output-tabs" role="tablist" aria-label="Output view" hidden>
+              <button class="seg-tab is-active" type="button" data-view="preview" role="tab" aria-selected="true">Rendered</button>
+              <button class="seg-tab" type="button" data-view="code" role="tab" aria-selected="false">HTML code</button>
+            </div>
+
+            <iframe class="preview-frame" id="preview-frame" title="Rendered document preview" sandbox="" hidden></iframe>
+            <pre class="preview-frame" id="output" aria-label="HTML source preview"></pre>
+
+            <div class="result__actions mt-4">
+              <button class="btn btn-primary" id="download-html" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+                Download HTML
+              </button>
+              <button class="btn btn-secondary" id="copy-btn" type="button">Copy</button>
+              <button class="btn btn-ghost" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private and safe</h2>
+            <p>Your document is processed locally. The preview runs in a sandboxed frame and all HTML is sanitised, so document scripts cannot run.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to convert a Word document to HTML</h2>
+        <div class="prose">
+          <ol>
+            <li>Add a <code>.docx</code> file. Older <code>.doc</code> files must be saved as <code>.docx</code> first.</li>
+            <li>Choose HTML or plain text.</li>
+            <li>Select <strong>Convert document</strong>.</li>
+            <li>Preview the rendered result, then copy the HTML or download it.</li>
+          </ol>
+          <p>Complex layouts, text boxes and custom fonts are simplified — the conversion focuses on your content, not pixel-perfect styling.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Which Word formats work?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Modern <code>.docx</code> files only. For older <code>.doc</code> files, open them in Word or Google Docs, save as <code>.docx</code>, then convert.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Will the layout look exactly the same?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Headings, lists, links, tables and images are preserved, but text boxes, multi-column layouts and exact fonts are simplified.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is the document uploaded?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. The file is unpacked and read in your browser. The HTML is sanitised and rendered inside a sandboxed frame for safety.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Convert document</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/mammoth-1.8.0.browser.min.js"></script>
+  <script src="../assets/vendor/dompurify-3.1.7.min.js"></script>
+  <script type="module" src="../assets/js/tools/docx-to-html.js"></script>
+</body>
+</html>

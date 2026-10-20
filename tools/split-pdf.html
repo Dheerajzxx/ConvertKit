@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Split PDF Online Free — Extract Pages — ConvertKit</title>
+  <meta name="description" content="Split a PDF into separate files or extract page ranges. Choose pages like 1-3, 5, 8-10 and download instantly. Free and fully private in your browser.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="split-pdf.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="Split PDF Online Free — ConvertKit">
+  <meta property="og:description" content="Extract pages or split any PDF into multiple files without uploading it.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Split PDF Online Free — ConvertKit">
+  <meta name="twitter:description" content="Extract pages or split any PDF, privately, in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How do I extract specific pages from a PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Select Extract page range, then type pages and ranges like 1-3, 5, 8-10. ConvertKit builds a new PDF containing exactly those pages." } },
+      { "@type": "Question", "name": "Can I split every page into its own file?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Choose Split each page. Every page becomes a separate PDF and they are delivered together in a ZIP file." } },
+      { "@type": "Question", "name": "Is my PDF uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Splitting happens entirely in your browser. No document data leaves your device." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="split-pdf">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#pdf-tools">PDF tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">Split PDF</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Split PDF files online, free</h1>
+        <p class="lead">Extract a page range or break a PDF into many files. Everything happens in your browser — nothing is uploaded.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Split</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a PDF file">
+            <input type="file" accept="application/pdf,.pdf">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a PDF here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">One PDF · up to 200 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <p class="visually-hidden" id="file-info">File selected</p>
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">How should we split it?</h2>
+            <fieldset class="field field--full" style="border:none;padding:0;margin:0 0 var(--space-4)">
+              <legend class="field__label mb-2">Split mode</legend>
+              <div class="segmented" role="radiogroup" aria-label="Split mode">
+                <label><input type="radio" name="mode" value="range" checked><span>Extract page range</span></label>
+                <label><input type="radio" name="mode" value="every"><span>Split every N pages</span></label>
+                <label><input type="radio" name="mode" value="single"><span>Split each page</span></label>
+              </div>
+            </fieldset>
+
+            <div class="field field--full" id="range-field">
+              <label for="range-input">Pages to keep</label>
+              <input class="input" id="range-input" type="text" inputmode="numeric" placeholder="e.g. 1-3, 5, 8-10" autocomplete="off">
+              <span class="field__help">Use commas for separate pages and a hyphen for ranges. Page numbers start at 1.</span>
+            </div>
+
+            <div class="field field--full" id="every-field" hidden>
+              <label for="every-input">Pages per file</label>
+              <input class="input" id="every-input" type="number" min="1" step="1" value="1" style="max-width:160px">
+              <span class="field__help">Results are delivered as a ZIP when there is more than one file.</span>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Split PDF</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a PDF to begin.</p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+            <div class="progress__label"><span id="progress-label">Splitting…</span></div>
+          </div>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Your split files are ready</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <div class="result__actions">
+              <button class="btn btn-primary" id="download-btn" type="button">Download</button>
+              <button class="btn btn-secondary" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Splitting runs on your device. Nothing is uploaded, stored or logged, and the output is never shared.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to split a PDF</h2>
+        <div class="prose">
+          <ol>
+            <li>Add a PDF by dragging it onto the box or clicking to browse.</li>
+            <li>Pick a mode: extract a page range, split every N pages, or split each page into its own file.</li>
+            <li>Enter the pages or chunk size, then select <strong>Split PDF</strong>.</li>
+            <li>Download a single PDF or, when several files are produced, a ZIP archive.</li>
+          </ol>
+          <p>Need the reverse? Try <a href="merge-pdf.html">Merge PDF</a> to combine documents back together.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>How do I extract specific pages from a PDF?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Choose <strong>Extract page range</strong> and type pages and ranges such as <code>1-3, 5, 8-10</code>. ConvertKit creates a new PDF containing exactly those pages, in the order you list them.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I split every page into its own file?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes. Select <strong>Split each page</strong>. Each page becomes a separate PDF and the results are delivered together in a ZIP file.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is my PDF uploaded anywhere?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. The file is read and rebuilt inside your browser. You can confirm in the Network tab that no document data is transmitted.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Split PDF</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/pdf-lib-1.17.1.min.js"></script>
+  <script src="../assets/vendor/jszip-3.10.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/split-pdf.js"></script>
+</body>
+</html>

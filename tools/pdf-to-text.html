@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>PDF to Text Converter Free — Extract Text — ConvertKit</title>
+  <meta name="description" content="Extract text from a PDF and copy or download it as a .txt file. Works with text-based PDFs, entirely in your browser with no uploads.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="pdf-to-text.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="PDF to Text Converter Free — ConvertKit">
+  <meta property="og:description" content="Pull the text out of a PDF without uploading it.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF to Text Converter Free — ConvertKit">
+  <meta name="twitter:description" content="Extract PDF text privately in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Why did my PDF return no text?", "acceptedAnswer": { "@type": "Answer", "text": "Scanned PDFs are pictures of text, so there is nothing to extract without OCR. This tool works with PDFs that contain real, selectable text." } },
+      { "@type": "Question", "name": "Does the extraction keep the layout?", "acceptedAnswer": { "@type": "Answer", "text": "It keeps line breaks and page order, but columns, tables and spacing are approximate because PDFs do not store text as structured paragraphs." } },
+      { "@type": "Question", "name": "Is my PDF uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. Text is extracted locally and never leaves your device." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="pdf-to-text">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#pdf-tools">PDF tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">PDF to Text</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Extract text from PDF files</h1>
+        <p class="lead">Copy or download the text inside a text-based PDF. Scanned documents need OCR, so this tool is honest about when it finds nothing.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Extract</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a PDF file">
+            <input type="file" accept="application/pdf,.pdf">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a PDF here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">Text-based PDF · up to 200 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Extraction options</h2>
+            <div class="options-grid">
+              <div class="field field--full">
+                <label for="range-input">Pages</label>
+                <input class="input" id="range-input" type="text" inputmode="numeric" placeholder="e.g. 1-3, 5" autocomplete="off">
+                <span class="field__help">Leave empty to extract every page.</span>
+              </div>
+              <label class="check field--full">
+                <input type="checkbox" id="page-breaks" checked>
+                <span><strong>Mark page breaks</strong>Insert a divider so you can tell where each page ends.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Extract text</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a PDF to begin.</p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+            <div class="progress__label"><span id="progress-label">Extracting…</span></div>
+          </div>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Text extracted</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <p class="notice mb-3">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg>
+              Spacing and columns are approximate. Scanned PDFs return little or no text without OCR.
+            </p>
+            <pre class="preview-frame" id="output" style="min-height:auto;max-height:360px;white-space:pre-wrap" aria-label="Extracted text"></pre>
+            <div class="result__actions mt-4">
+              <button class="btn btn-primary" id="download-btn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+                Download .txt
+              </button>
+              <button class="btn btn-secondary" id="copy-btn" type="button">Copy text</button>
+              <button class="btn btn-ghost" id="reset-btn" type="button">Extract another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Text is read from the PDF on your device. Nothing is uploaded, so confidential documents stay confidential.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to extract text from a PDF</h2>
+        <div class="prose">
+          <ol>
+            <li>Add a PDF that contains selectable text.</li>
+            <li>Optionally limit the pages or keep the page-break markers.</li>
+            <li>Select <strong>Extract text</strong>.</li>
+            <li>Copy the text or download it as a .txt file.</li>
+          </ol>
+          <p>If the result is nearly empty, the PDF is likely a scan. That needs OCR, which this free tool does not perform.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Why did my PDF return no text?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Scanned PDFs are images of pages, so there is no embedded text to read. You would need an OCR service to convert the image to text first.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Does the extraction keep the layout?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>It preserves line breaks and page order, but columns, tables and spacing are approximate. PDFs do not store text as tidy paragraphs.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is my PDF uploaded?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. All extraction happens in your browser tab and the text stays on your device.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Extract text</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/pdfjs-3.11.174.min.js"></script>
+  <script type="module" src="../assets/js/tools/pdf-to-text.js"></script>
+</body>
+</html>

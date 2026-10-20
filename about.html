@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>About ConvertKit — Free, Private File Tools</title>
+  <meta name="description" content="ConvertKit is a free set of document and image converters that run entirely in your browser. Learn why it exists and how it protects your privacy.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="about.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="About ConvertKit">
+  <meta property="og:description" content="Free, private file converters built with HTML, CSS and JavaScript.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About ConvertKit">
+  <meta name="twitter:description" content="Free, private file converters built with HTML, CSS and JavaScript.">
+  <meta name="twitter:image" content="assets/img/og-image.jpg">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <script src="assets/js/theme.js"></script>
+</head>
+<body data-root="" data-page="about">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container-narrow">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">About</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>About ConvertKit</h1>
+        <p class="lead">A small, free toolkit of file converters that respect your privacy by never touching a server.</p>
+      </header>
+
+      <div class="page-content prose">
+        <h2>Why this exists</h2>
+        <p>Most “free online converter” sites upload your document to a server you can't see, keep it for an unknown amount of time, and often ask you to create an account. For a passport scan, an invoice or a client contract, that is a real risk.</p>
+        <p>ConvertKit takes the opposite approach. Every tool runs entirely in your browser using open-source JavaScript libraries. Your files are read, converted and saved on your own device. There is no backend to upload to, so there is nothing to leak.</p>
+
+        <h2>What you can do here</h2>
+        <ul>
+          <li><strong>PDF tools</strong> — merge, split, rotate, extract text, and convert to and from images.</li>
+          <li><strong>Image tools</strong> — convert between PNG, JPG and WebP, and compress or resize photos.</li>
+          <li><strong>Data tools</strong> — convert between CSV, JSON and Excel formats.</li>
+          <li><strong>Document tools</strong> — turn Word files into HTML and write Markdown with a live preview.</li>
+        </ul>
+
+        <h2>How it is built</h2>
+        <p>The site is plain HTML, CSS and JavaScript with no build step, no framework and no tracking. Well-known libraries such as pdf-lib, pdf.js, SheetJS, PapaParse, mammoth and marked are pinned to exact versions and served from this site, so the tools keep working even if a CDN goes down. Each one is listed in the <a href="THIRD_PARTY_LICENSES.md">third-party licences</a> file.</p>
+
+        <h2>What it does not do</h2>
+        <p>Because everything runs in your browser, some jobs are out of scope. Accurate PDF-to-Word conversion, OCR for scanned documents, and video or audio conversion all need heavy server-side software. Rather than offer a poor version, ConvertKit leaves them out and focuses on doing the client-side tools well.</p>
+
+        <h2>Get involved</h2>
+        <p>Found a bug, or want a tool added? Open an issue on the project repository, or reach out through the <a href="contact.html">contact page</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script type="module" src="assets/js/common.js"></script>
+</body>
+</html>

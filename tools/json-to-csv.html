@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>JSON to CSV Converter Free — ConvertKit</title>
+  <meta name="description" content="Convert JSON arrays into spreadsheet-ready CSV. Flatten nested objects, choose a delimiter and download the result. Free and fully private.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="json-to-csv.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="JSON to CSV Converter Free — ConvertKit">
+  <meta property="og:description" content="Flatten JSON into CSV without uploading your data.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="JSON to CSV Converter Free — ConvertKit">
+  <meta name="twitter:description" content="Flatten JSON into CSV privately in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What JSON shapes are supported?", "acceptedAnswer": { "@type": "Answer", "text": "An array of objects works best. A single object becomes one row. If your array is nested under a key such as data or items, ConvertKit finds it automatically." } },
+      { "@type": "Question", "name": "How are nested objects handled?", "acceptedAnswer": { "@type": "Answer", "text": "With flattening on, nested keys become dot-notation columns like address.city. Arrays are written as JSON text inside a single cell." } },
+      { "@type": "Question", "name": "Is my JSON uploaded?", "acceptedAnswer": { "@type": "Answer", "text": "No. Parsing and conversion happen entirely in your browser." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="json-to-csv">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#data-tools">Data tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">JSON to CSV</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Convert JSON to CSV online, free</h1>
+        <p class="lead">Turn a JSON array into a spreadsheet-ready CSV. Flatten nested objects, preview the table and download — no data leaves your browser.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Convert</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a JSON file">
+            <input type="file" accept=".json,application/json,text/plain">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a JSON file here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">.json · up to 50 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Conversion options</h2>
+            <div class="options-grid">
+              <div class="field">
+                <label for="delimiter">Delimiter</label>
+                <select class="select" id="delimiter">
+                  <option value="comma" selected>Comma ( , )</option>
+                  <option value="semicolon">Semicolon ( ; )</option>
+                  <option value="tab">Tab</option>
+                </select>
+              </div>
+              <label class="check" style="align-items:center;min-height:44px">
+                <input type="checkbox" id="flatten" checked>
+                <span><strong>Flatten nested objects</strong>Use dot-notation columns.</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="table-preview"></div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Convert to CSV</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a JSON file to begin.</p>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Your CSV is ready</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <p class="notice notice--warning mb-3" id="nested-notice" hidden></p>
+            <pre class="preview-frame" id="output" style="min-height:auto;max-height:280px" aria-label="CSV output preview"></pre>
+            <div class="result__actions mt-4">
+              <button class="btn btn-primary" id="download-btn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+                Download CSV
+              </button>
+              <button class="btn btn-secondary" id="copy-btn" type="button">Copy CSV</button>
+              <button class="btn btn-ghost" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>API responses and exports often contain personal data. Here they are parsed locally and never sent anywhere.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to convert JSON to CSV</h2>
+        <div class="prose">
+          <ol>
+            <li>Add a .json file containing an array of objects (or a single object).</li>
+            <li>Check the preview table. Turn flattening on if your objects are nested.</li>
+            <li>Select <strong>Convert to CSV</strong>.</li>
+            <li>Copy the CSV or download it and open it in a spreadsheet app.</li>
+          </ol>
+          <p>Need the reverse? Use <a href="csv-to-json.html">CSV to JSON</a>.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What JSON shapes are supported?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>An array of objects is ideal. A single object becomes one row. If your array lives under a key such as <code>data</code> or <code>items</code>, it is found automatically.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How are nested objects handled?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>With flattening enabled, nested keys become dot-notation columns such as <code>address.city</code>. Arrays are stored as JSON text in a single cell.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is my JSON uploaded?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. Parsing and conversion happen entirely inside your browser, so no data is transmitted.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Convert to CSV</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/papaparse-5.4.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/json-to-csv.js"></script>
+</body>
+</html>

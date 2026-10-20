@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>PDF to JPG or PNG Converter Free — ConvertKit</title>
+  <meta name="description" content="Convert PDF pages to high-quality JPG or PNG images. Pick resolution and page range, preview the result and download as a ZIP. Free and private.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="pdf-to-image.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="PDF to JPG or PNG Converter Free — ConvertKit">
+  <meta property="og:description" content="Export PDF pages as crisp JPG or PNG images, right in your browser.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF to JPG or PNG Converter Free — ConvertKit">
+  <meta name="twitter:description" content="Export PDF pages as images, privately, in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What resolution are the exported images?", "acceptedAnswer": { "@type": "Answer", "text": "You can choose 1x (screen), 2x or 3x (print quality). Higher scale means sharper images and larger files." } },
+      { "@type": "Question", "name": "How do I get all pages at once?", "acceptedAnswer": { "@type": "Answer", "text": "When more than one page is exported, ConvertKit packages the images into a ZIP file you download in one click." } },
+      { "@type": "Question", "name": "Does it work with scanned PDFs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Scanned PDFs are just page images, so the rendered JPG or PNG copies them faithfully." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="pdf-to-image">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#pdf-tools">PDF tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">PDF to Image</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Convert PDF pages to JPG or PNG</h1>
+        <p class="lead">Export every page as a sharp image. Choose the resolution, preview the first page, then download individually or as a ZIP.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Options</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Render</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add a PDF file">
+            <input type="file" accept="application/pdf,.pdf">
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+            </span>
+            <span class="dropzone__title">Drop a PDF here, or <span class="link">choose a file</span></span>
+            <span class="dropzone__hint">One PDF · up to 200 MB</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="options-panel" id="options-panel" hidden>
+            <h2 class="options-panel__title">Output settings</h2>
+            <div class="options-grid">
+              <div class="field">
+                <label for="format">Image format</label>
+                <select class="select" id="format">
+                  <option value="image/jpeg" selected>JPG (smaller files)</option>
+                  <option value="image/png">PNG (lossless)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="scale">Resolution</label>
+                <select class="select" id="scale">
+                  <option value="1">1x — screen</option>
+                  <option value="2" selected>2x — recommended</option>
+                  <option value="3">3x — print quality</option>
+                </select>
+              </div>
+              <div class="field field--full" id="quality-field">
+                <label for="quality">JPG quality</label>
+                <div class="range-row">
+                  <input type="range" id="quality" min="40" max="100" step="1" value="90">
+                  <output class="range-value" id="quality-value">90%</output>
+                </div>
+              </div>
+              <div class="field field--full">
+                <label for="range-input">Pages</label>
+                <input class="input" id="range-input" type="text" inputmode="numeric" placeholder="e.g. 1-3, 5" autocomplete="off">
+                <span class="field__help">Leave empty to export every page.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Convert to images</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add a PDF to begin.</p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+            <div class="progress__label"><span id="progress-label">Rendering…</span></div>
+          </div>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title">Your images are ready</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <div class="result__preview" id="result-preview" hidden></div>
+            <div class="result__actions mt-4">
+              <button class="btn btn-primary" id="download-btn" type="button">Download</button>
+              <button class="btn btn-secondary" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>Rendering happens on your device with the browser's own PDF engine. Nothing is uploaded or stored.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to convert a PDF to images</h2>
+        <div class="prose">
+          <ol>
+            <li>Add your PDF by dragging it onto the box or clicking to browse.</li>
+            <li>Pick JPG or PNG, choose a resolution, and optionally limit the pages.</li>
+            <li>Select <strong>Convert to images</strong> and watch the progress as each page renders.</li>
+            <li>Download the single image, or the ZIP containing every page.</li>
+          </ol>
+          <p>Going the other way? Use <a href="image-to-pdf.html">Image to PDF</a> to build a PDF from pictures.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What resolution are the exported images?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Pick 1x for screen-sized images, 2x for a good balance, or 3x for print-quality exports. Larger scales produce sharper images and bigger files.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How do I get all pages at once?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Leave the pages field empty. When several images are produced they are packaged into a ZIP that downloads in one click.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Does it work with scanned PDFs?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes. A scanned PDF is already a series of page images, so the exported JPG or PNG reproduces each page exactly.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Convert to images</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/pdfjs-3.11.174.min.js"></script>
+  <script src="../assets/vendor/jszip-3.10.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/pdf-to-image.js"></script>
+</body>
+</html>

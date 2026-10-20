@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' blob: data:; worker-src 'self' blob:; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <title>Merge PDF Files Online Free — ConvertKit</title>
+  <meta name="description" content="Combine multiple PDF files into one document. Reorder pages, remove files and download instantly. Free, private and processed entirely in your browser.">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="canonical" href="merge-pdf.html">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ConvertKit">
+  <meta property="og:title" content="Merge PDF Files Online Free — ConvertKit">
+  <meta property="og:description" content="Combine PDFs in seconds without uploading them. Reorder, remove and merge — all in your browser.">
+  <meta property="og:image" content="../assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Merge PDF Files Online Free — ConvertKit">
+  <meta name="twitter:description" content="Combine PDFs privately, right in your browser.">
+  <meta name="twitter:image" content="../assets/img/og-image.jpg">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script src="../assets/js/theme.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Are my PDF files uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. ConvertKit merges PDFs entirely inside your browser using JavaScript. Your files are never uploaded, stored or shared." } },
+      { "@type": "Question", "name": "Can I change the order of the PDFs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Drag the file cards or use the up and down arrow buttons to set the exact order before merging." } },
+      { "@type": "Question", "name": "Why does a password-protected PDF fail?", "acceptedAnswer": { "@type": "Answer", "text": "Encrypted PDFs cannot be read without their password. Remove the password in your PDF viewer, then try merging again." } },
+      { "@type": "Question", "name": "Is there a file size limit?", "acceptedAnswer": { "@type": "Answer", "text": "Each PDF can be up to 200 MB. Very large documents depend on your device memory, so close other heavy tabs if a merge fails." } }
+    ]
+  }
+  </script>
+</head>
+<body data-root="../" data-tool="merge-pdf">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span class="sep" aria-hidden="true">/</span>
+        <a href="../index.html#pdf-tools">PDF tools</a><span class="sep" aria-hidden="true">/</span>
+        <span aria-current="page">Merge PDF</span>
+      </nav>
+
+      <header class="page-head">
+        <h1>Merge PDF files online, free</h1>
+        <p class="lead">Combine several PDFs into one document. Drag to reorder, remove files, then download your merged PDF — no uploads, no waiting.</p>
+      </header>
+
+      <div class="tool-layout">
+        <div class="tool-main">
+          <ol class="stepper" aria-label="Steps">
+            <li class="stepper__step is-active"><span class="num">1</span> Upload</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">2</span> Reorder</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">3</span> Merge</li>
+            <li class="stepper__sep" aria-hidden="true"></li>
+            <li class="stepper__step"><span class="num">4</span> Download</li>
+          </ol>
+
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Add PDF files">
+            <input type="file" accept="application/pdf,.pdf" multiple>
+            <span class="dropzone__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+            </span>
+            <span class="dropzone__title">Drop your PDFs here, or <span class="link">choose files</span></span>
+            <span class="dropzone__hint">2 or more PDFs · up to 200 MB each</span>
+            <span class="dropzone__privacy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              Files never leave your device
+            </span>
+          </div>
+
+          <div class="file-list" id="file-list"></div>
+
+          <div class="action-row">
+            <button class="btn btn-primary" id="convert-btn" type="button" disabled>Merge PDFs</button>
+            <button class="btn btn-ghost" id="clear-btn" type="button">Clear all</button>
+          </div>
+          <p class="status-line" id="status" aria-live="polite">Add at least two PDF files to begin.</p>
+
+          <div class="progress" id="progress" hidden>
+            <div class="progress__track"><div class="progress__bar" id="progress-bar"></div></div>
+            <div class="progress__label"><span id="progress-label">Merging…</span><span id="progress-pct"></span></div>
+          </div>
+
+          <section class="result" id="result" hidden aria-live="polite">
+            <div class="result__head">
+              <span class="result__check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 6"/></svg>
+              </span>
+              <div>
+                <p class="result__title" id="result-title">Your merged PDF is ready</p>
+                <p class="result__meta" id="result-meta"></p>
+              </div>
+            </div>
+            <div class="result__actions">
+              <button class="btn btn-primary" id="download-btn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M20 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/></svg>
+                Download merged PDF
+              </button>
+              <button class="btn btn-secondary" id="reset-btn" type="button">Convert another</button>
+            </div>
+          </section>
+        </div>
+
+        <aside class="tool-aside">
+          <div class="tool-aside__card">
+            <h2>Private by design</h2>
+            <p>This tool runs entirely in your browser. No file is uploaded, stored or logged. Close the tab and everything is gone.</p>
+            <p class="text-sm muted mt-3"><a href="../privacy.html">Read the privacy promise</a></p>
+          </div>
+          <div class="tool-aside__card">
+            <h2>Related tools</h2>
+            <div class="tool-aside__links" id="related-tools"></div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="content-section" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to merge PDFs</h2>
+        <div class="prose">
+          <ol>
+            <li>Drop two or more PDF files onto the box above, or click to browse. You can also paste files with <kbd>Ctrl</kbd> + <kbd>V</kbd>.</li>
+            <li>Drag the file cards — or use the arrow buttons — so the pages appear in the order you want.</li>
+            <li>Select <strong>Merge PDFs</strong>. The combined PDF is built locally and a download button appears.</li>
+            <li>Download the result, then use <strong>Convert another</strong> to start over.</li>
+          </ol>
+          <p>Everything happens on your device. The files are read with the browser's File API, combined with an in-browser PDF library, and saved back to your downloads folder. No network request carries your document.</p>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Are my PDF files uploaded to a server?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>No. The merge runs inside your browser tab. You can verify this in your browser's Network tab — no document data is sent anywhere.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I change the order of the PDFs?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Yes. Drag the cards to reorder them, or use the up and down buttons on each card. The merged document follows the list order from top to bottom.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Why does a password-protected PDF fail?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Encrypted PDFs cannot be read without the password. Remove the password in a PDF viewer first, then add the file again.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is there a file size limit?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></summary>
+            <div class="faq-item__body"><p>Each PDF can be up to 200 MB. Very large merges depend on your device's memory — close other heavy tabs if a merge fails, then try again with fewer files.</p></div>
+          </details>
+        </div>
+      </section>
+    </div>
+
+    <div class="mobile-action-bar">
+      <button class="btn btn-primary" id="convert-btn-mobile" type="button" disabled>Merge PDFs</button>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../assets/vendor/pdf-lib-1.17.1.min.js"></script>
+  <script type="module" src="../assets/js/tools/merge-pdf.js"></script>
+</body>
+</html>
