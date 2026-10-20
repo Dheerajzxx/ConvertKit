@@ -37,17 +37,23 @@
   var MOON =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
 
+  var lastIcon = null;
+
   function refreshButton() {
     var theme = current();
     var icon = document.querySelector("#theme-toggle .theme-icon");
-    if (icon) icon.innerHTML = theme === "dark" ? SUN : MOON;
+    if (icon && lastIcon !== theme) {
+      icon.innerHTML = theme === "dark" ? SUN : MOON;
+      lastIcon = theme;
+    }
     var button = document.getElementById("theme-toggle");
     if (button) {
-      button.setAttribute(
-        "aria-label",
-        theme === "dark" ? "Switch to light theme" : "Switch to dark theme"
-      );
-      button.setAttribute("title", theme === "dark" ? "Light theme" : "Dark theme");
+      var label = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+      if (button.getAttribute("aria-label") !== label) {
+        button.setAttribute("aria-label", label);
+        button.setAttribute("title", theme === "dark" ? "Light theme" : "Dark theme");
+      }
+      refreshButton.ready = true;
     }
   }
 
@@ -79,9 +85,10 @@
 
   function boot() {
     refreshButton();
-    if (!window.MutationObserver) return;
+    if (refreshButton.ready || !window.MutationObserver) return;
     var observer = new MutationObserver(function () {
       refreshButton();
+      if (refreshButton.ready) observer.disconnect();
     });
     observer.observe(document.body, { childList: true, subtree: true });
   }
