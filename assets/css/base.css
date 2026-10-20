@@ -36,8 +36,11 @@ canvas {
 }
 
 svg {
-  fill: currentColor;
   flex-shrink: 0;
+}
+
+svg:not([fill]) {
+  fill: currentColor;
 }
 
 input,
